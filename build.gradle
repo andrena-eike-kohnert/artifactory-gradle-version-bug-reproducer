@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'ivy-publish'
+
+group = 'my.sample'
+version = '1.0.0.SNAPSHOT'
+
+publishing {
+    publications {
+        ivyJava(IvyPublication) {
+            from components.java
+			revision = "1.0.0.SNAPSHOT.${System.currentTimeMillis()}"
+        }
+    }
+    repositories {
+        ivy {
+            url "$buildDir/repo"
+        }
+    }
+}
+
